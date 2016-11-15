@@ -1,6 +1,7 @@
 // ControlFrame.java
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,14 +51,20 @@ public class TestCrapsNewFrame extends JFrame
     mainPanel = new JPanel( new BorderLayout() );
     mainPanel.setSize(200, 250);  
     
-    testPanel = new JPanel( new FlowLayout() );    
+    // Test Panel
+    testPanel = new JPanel( new FlowLayout() );    // original
     testPanel.setSize(200, 200);
+    //testPanel = new JPanel( new GridLayout(2, 2, 12, 6) );	// didn't work
+    
     
     calcPanel = new JPanel( new FlowLayout() );    
     calcPanel.setSize(200, 200);    
 
     final DrawControlPanel drawPanel = new DrawControlPanel();
     drawPanel.setSize(200, 200);    
+    
+    Craps gameCraps = new Craps();
+    
     
     this.setContentPane( mainPanel );
     
@@ -85,6 +92,9 @@ public class TestCrapsNewFrame extends JFrame
             bar.remove( colorMenu );
             mainPanel.remove( drawPanel );
             mainPanel.remove( widthJSlider );
+            
+            gameCraps.rollDice();
+            
             xValTextField.setText("");
             yValTextField.setText("");
             calcJLabel.setText( "" );
