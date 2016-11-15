@@ -18,5 +18,49 @@ Please use the zip format (not .rar or any other format).
 
 
 
+-----------------------------------------
 
+
+/*
+		
+		icons:
+		http://www.small-icons.com/packs/24x24-free-application-icons.htm
+		
+		Tutorials:
+		https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=beginning%20java%20swing%20tutorial
+		https://docs.oracle.com/javase/tutorial/uiswing/examples/components/
+		
+		http://beginnersbook.com/2015/07/java-swing-tutorial/		// completed
+		
+		http://zetcode.com/tutorials/javaswingtutorial/				
+		http://zetcode.com/tutorials/javaswingtutorial/menusandtoolbars/ //ShortCutsEx.java
+		
+		Need to look at events
+		http://zetcode.com/tutorials/javaswingtutorial/swingevents/
+		
+		Programming Graphical User Interface (GUI)
+		http://www3.ntu.edu.sg/home/ehchua/programming/java/j4a_gui.html
+		https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI_2.html
+		
+		
+		https://www.tutorialspoint.com/swing/swing_imageicon.htm
+		
+		The Java Tutorials: Creating a GUI with JFC.Swing ( The Swing Tutorial )
+		http://java.sun.com/docs/books/tutorial/uiswing/
+		
+		The Swing Tutorial
+		http://www.javabeginner.com/java-swing/java-swing-tutorial/
+		
+		SwingWiki: 
+		http://www.swingwiki.org
+		
+		The SwingSet2 Demo
+		<JDK Install Direcroty/demo/jfc/SwingSet2
+		
+		command line:
+		jar xf SwingSet2.jar
+		
+		*/
+		
+		
     
