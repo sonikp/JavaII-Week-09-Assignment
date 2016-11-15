@@ -45,7 +45,7 @@ public class Craps
 //   }
    
    // roll dice, calculate sum and display results
-   public int[] rollDice()
+   public static int[] rollDice()
    {
 		int[] returnRoll = new int[3];
 		returnRoll[0] = (1 + randomNumbers.nextInt(6));
@@ -59,15 +59,15 @@ public class Craps
    {
 	   
 	   int[] dice = diceRoll;
-	   System.out.println("enter method scoring");
-	   System.out.println(dice[0]);
-	   System.out.println(dice[1]);
-	   System.out.println(dice[2]);
+//	   System.out.println("enter method scoring");
+//	   System.out.println(dice[0]);
+//	   System.out.println(dice[1]);
+//	   System.out.println(dice[2]);
 	   
 	   sumOfDice = dice[2];
 
 	   	
-	   System.out.println("scoring sum " + sumOfDice);
+	   System.out.println("total: " + sumOfDice);
 	   
 	   // determine game status and point based on first roll 
 	      switch (sumOfDice) 
@@ -87,15 +87,16 @@ public class Craps
 	            System.out.printf("Point is %d%n", myPoint);
 	            break;
 	      } 
+	      System.out.println("\tscoringGameStatus " + gameStatus + " myPoint " + myPoint);
    }
    
    public void gameScore(int[] diceRoll)
    {
 	   int[] dice = diceRoll;
-	   System.out.println("enter method gameScore");
-	   System.out.println(dice[0]);
-	   System.out.println(dice[1]);
-	   System.out.println(dice[2]);
+//	   System.out.println("enter method gameScore");
+//	   System.out.println(dice[0]);
+//	   System.out.println(dice[1]);
+//	   System.out.println(dice[2]);
 	   
 	   sumOfDice = dice[2];
 	   
@@ -103,12 +104,17 @@ public class Craps
 	   // while game is not complete
        while (gameStatus == Status.CONTINUE) // not WON or LOST
        { 
-          //sumOfDice = rollDice(); // roll dice again
+    	   System.out.println("\tgamescoreGameStatus " + gameStatus + " dice[2] " + sumOfDice);
+    	   
+    	   int[] anotherRoll = rollDice(); // roll dice again
+    	   System.out.print("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1]);
+          sumOfDice = anotherRoll[2];
 
 		 // determine game status
           if (sumOfDice == myPoint) // win by making point
           {
         	  gameStatus = Status.WON;
+        	  System.out.print(" Win" + "\n");
           }
           else if (sumOfDice == SEVEN) // lose by rolling 7 before point
           {
@@ -120,11 +126,11 @@ public class Craps
        // display won or lost message
        if (gameStatus == Status.WON)
        {
-    	   System.out.println("Player wins");
+    	   System.out.println(" Player wins");
        }
        else
        {
-    	   System.out.println("Player loses");
+    	   System.out.println(" Player loses");
        }
           
    
@@ -137,9 +143,15 @@ public class Craps
 	   //sumOfDice = rollDice(); // first roll of the dice
 	   // check roll to check the score
 	   
-	   scoring(rollDice());
-	   // results
-	   gameScore();
+//	   scoring(rollDice());
+//	   // results
+//	   gameScore();
+	   
+	   int[] results = rollDice();
+	   scoring(results);
+	   gameScore(results);
+	   
+	   
 
    }
 
@@ -147,10 +159,11 @@ public class Craps
    public static void main(String[] args)
    {
 	   Craps game = new Craps();
+	   game.gamePlay();
 
-	   int[] results = game.rollDice();
-	   game.scoring(results);
-	   game.gameScore(results);
+//	   int[] results = game.rollDice();
+//	   game.scoring(results);
+//	   game.gameScore(results);
       
    }
 
