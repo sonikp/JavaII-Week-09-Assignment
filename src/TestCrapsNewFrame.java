@@ -38,10 +38,18 @@ public class TestCrapsNewFrame extends JFrame
   private String yStr;
   
   // test
-  private final JPanel testPanel;
-  private JLabel testJLabel;
-  private JButton testJButton;
+  private final JPanel crapsPanel;
+  private JLabel crapsJLabel;
+  private JButton crapsJButton;
+  private JButton rollJButton;
   private JButton quitButton;
+  private JLabel dice1Label = new JLabel("first dice");
+  private JTextField dice1Field = new JTextField("1");
+  private JLabel dice2Label = new JLabel("second dice");
+  private JTextField dice2Field = new JTextField("2");
+  private JLabel sumLabel = new JLabel("Sum");
+  private JTextField sumField = new JTextField("1 + 2");
+
 
   
 
@@ -54,9 +62,9 @@ public class TestCrapsNewFrame extends JFrame
     // set in center of screen
     //setLocationRelativeTo(null);
     
-    // Test Panel
-    testPanel = new JPanel( new FlowLayout() );    // original
-    testPanel.setSize(200, 200);
+    // Craps Panel
+    crapsPanel = new JPanel( new FlowLayout() );    // original
+    crapsPanel.setSize(400, 400);
     //testPanel = new JPanel( new GridLayout(2, 2, 12, 6) );	// didn't work
     
     
@@ -84,10 +92,10 @@ public class TestCrapsNewFrame extends JFrame
     
     
     // ---START---------test panel-----------------
-    JMenuItem testPanelItem = new JMenuItem( "Test Panel" );
-    testPanelItem.setMnemonic( 'C' );
-    fileMenu.add( testPanelItem );
-    testPanelItem.addActionListener(
+    JMenuItem crapsPanelItem = new JMenuItem( "Craps Panel" );
+    crapsPanelItem.setMnemonic( 'C' );
+    fileMenu.add( crapsPanelItem );
+    crapsPanelItem.addActionListener(
       new ActionListener()
       {
         public void actionPerformed( ActionEvent event )
@@ -96,17 +104,31 @@ public class TestCrapsNewFrame extends JFrame
             mainPanel.remove( drawPanel );
             mainPanel.remove( widthJSlider );
             
+//            sumLabel = new JLabel("Total Money");
+//            sumField = new JTextField("$$$");
             gameCraps.rollDice();
             
-            xValTextField.setText("");
-            yValTextField.setText("");
-            calcJLabel.setText( "" );
-            mainPanel.add(testPanel, BorderLayout.CENTER );
+            crapsPanel.add(dice1Label);
+
+            crapsPanel.add(dice2Label);
+            
+//            xValTextField.setText("");
+//            yValTextField.setText("");
+//            crapsJLabel.setText( "" );
+            mainPanel.add(crapsPanel, BorderLayout.CENTER );
             validate();
             repaint();
         }
       }
     );
+    
+//    testPanel.add( rollJButton );
+    
+    crapsJLabel = new JLabel();
+    crapsPanel.add( crapsJLabel, BorderLayout.CENTER );
+    
+    crapsPanel.add(sumLabel);
+    crapsPanel.add(sumField);
     
 
     
@@ -123,7 +145,7 @@ public class TestCrapsNewFrame extends JFrame
       }
     );                                                                       
 
-    testPanel.add( xValTextField );
+    crapsPanel.add( xValTextField );
     
     // input field2
     yValTextField = new JTextField( 3 );
@@ -137,34 +159,68 @@ public class TestCrapsNewFrame extends JFrame
       }
     );     
 
-    testPanel.add( yValTextField );
+    crapsPanel.add( yValTextField );
+    
+
     
     // calculate at the push of a button
-    testJButton = new JButton( "Crapulate" );   
-    testJButton.addActionListener(
+    rollJButton = new JButton( "Roll" );   
+    rollJButton.addActionListener(
       new ActionListener()
       {
         public void actionPerformed( ActionEvent event )
         {
-          try {       
-            int x = Integer.parseInt( xStr );
-            int y = Integer.parseInt( yStr );
-            int result = x + y;
-            testJLabel.setText(xStr + " + " + yStr + " = " + result);
-          }
-          catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog( TestCrapsNewFrame.this, "You must enter a valid number and then <ENTER> for each textbox!", "Invalid Input", JOptionPane.ERROR_MESSAGE );
-            e.printStackTrace();
-          }
+        	int sum = gameCraps.rollDice();
+        	crapsJLabel.setText("Sum is " + sum);
+//        	JOptionPane.showMessageDialog( TestCrapsNewFrame.this, "Press this button!", "Invalid Input", JOptionPane.ERROR_MESSAGE );         
+        	
+        	
+          
+        	
+//        	try {       
+//            int x = Integer.parseInt( xStr );
+//            int y = Integer.parseInt( yStr );
+//            int result = x + y;
+//            crapsJLabel.setText(xStr + " + " + yStr + " = " + result);
+//          }
+//          catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog( TestCrapsNewFrame.this, "You must enter a valid number and then <ENTER> for each textbox!", "Invalid Input", JOptionPane.ERROR_MESSAGE );
+//            e.printStackTrace();
+//          }
+        }
+      }
+    );
+    
+    // calculate at the push of a button
+    crapsJButton = new JButton( "Crapulate" );   
+    crapsJButton.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+        	
+          
+        	
+//        	try {       
+//            int x = Integer.parseInt( xStr );
+//            int y = Integer.parseInt( yStr );
+//            int result = x + y;
+//            crapsJLabel.setText(xStr + " + " + yStr + " = " + result);
+//          }
+//          catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog( TestCrapsNewFrame.this, "You must enter a valid number and then <ENTER> for each textbox!", "Invalid Input", JOptionPane.ERROR_MESSAGE );
+//            e.printStackTrace();
+//          }
         }
       }
     );
     
     
-    testPanel.add( testJButton );
+    crapsPanel.add( crapsJButton );
+    crapsPanel.add( rollJButton );
     
-    testJLabel = new JLabel();
-    testPanel.add( testJLabel, BorderLayout.CENTER );
+    crapsJLabel = new JLabel();
+    crapsPanel.add( crapsJLabel, BorderLayout.CENTER );
     // ---END---------test panel-----------------
     
     

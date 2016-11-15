@@ -29,24 +29,47 @@ public class Craps
    }
    
    // roll dice, calculate sum and display results
-   public int rollDice()
+//   public int rollDice()
+//   {
+//      // pick random die values
+//      int die1 = 1 + randomNumbers.nextInt(6); // first die roll
+//      int die2 = 1 + randomNumbers.nextInt(6); // second die roll
+//
+//      int sum = die1 + die2; // sum of die values
+//
+//      // display results of this roll
+//      System.out.printf("Player rolled %d + %d = %d%n", 
+//         die1, die2, sum);
+//
+//      return sum; 
+//   }
+   
+   // roll dice, calculate sum and display results
+   public int[] rollDice()
    {
-      // pick random die values
-      int die1 = 1 + randomNumbers.nextInt(6); // first die roll
-      int die2 = 1 + randomNumbers.nextInt(6); // second die roll
+		int[] returnRoll = new int[3];
+		returnRoll[0] = (1 + randomNumbers.nextInt(6));
+		returnRoll[1] = (1 + randomNumbers.nextInt(6));
+		returnRoll[2] = returnRoll[0] + returnRoll[1];
+		return returnRoll;
 
-      int sum = die1 + die2; // sum of die values
-
-      // display results of this roll
-      System.out.printf("Player rolled %d + %d = %d%n", 
-         die1, die2, sum);
-
-      return sum; 
    }
    
-   public void scoring()
+   public void scoring(int[] diceRoll)
    {
-	   	// determine game status and point based on first roll 
+	   
+	   int[] dice = diceRoll;
+	   System.out.println("enter method scoring");
+	   System.out.println(dice[0]);
+	   System.out.println(dice[1]);
+	   System.out.println(dice[2]);
+	   
+	   sumOfDice = dice[2];
+
+	   	
+	   System.out.println("scoring sum " + sumOfDice);
+	   
+	   // determine game status and point based on first roll 
 	      switch (sumOfDice) 
 	      {
 	         case SEVEN: // win with 7 on first roll
@@ -66,12 +89,21 @@ public class Craps
 	      } 
    }
    
-   public void gameScore()
+   public void gameScore(int[] diceRoll)
    {
+	   int[] dice = diceRoll;
+	   System.out.println("enter method gameScore");
+	   System.out.println(dice[0]);
+	   System.out.println(dice[1]);
+	   System.out.println(dice[2]);
+	   
+	   sumOfDice = dice[2];
+	   
+	   
 	   // while game is not complete
        while (gameStatus == Status.CONTINUE) // not WON or LOST
        { 
-          sumOfDice = rollDice(); // roll dice again
+          //sumOfDice = rollDice(); // roll dice again
 
 		 // determine game status
           if (sumOfDice == myPoint) // win by making point
@@ -102,9 +134,10 @@ public class Craps
    {
 
 	   // roll the dice
-	   sumOfDice = rollDice(); // first roll of the dice
+	   //sumOfDice = rollDice(); // first roll of the dice
 	   // check roll to check the score
-	   scoring();
+	   
+	   scoring(rollDice());
 	   // results
 	   gameScore();
 
@@ -113,7 +146,11 @@ public class Craps
    // plays one game of craps
    public static void main(String[] args)
    {
-	   
+	   Craps game = new Craps();
+
+	   int[] results = game.rollDice();
+	   game.scoring(results);
+	   game.gameScore(results);
       
    }
 
