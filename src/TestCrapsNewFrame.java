@@ -36,11 +36,22 @@ public class TestCrapsNewFrame extends JFrame
   private String xStr;
   private String yStr;
   
+  //
+  private final JPanel testPanel;
+  private JLabel testJLabel;
+  private JButton testJButton;
+
+  
+
+  
   public TestCrapsNewFrame(String title)
   {
     super( title );
     mainPanel = new JPanel( new BorderLayout() );
-    mainPanel.setSize(200, 250);    
+    mainPanel.setSize(200, 250);  
+    
+    testPanel = new JPanel( new FlowLayout() );    
+    testPanel.setSize(200, 200);
     
     calcPanel = new JPanel( new FlowLayout() );    
     calcPanel.setSize(200, 200);    
@@ -52,6 +63,228 @@ public class TestCrapsNewFrame extends JFrame
     
     JMenu fileMenu = new JMenu( "File" );
     fileMenu.setMnemonic( 'F' );
+    
+      
+    final JMenuBar bar = new JMenuBar();  // Create a JMenuBar so we can attach menus to it.
+    setJMenuBar( bar );  // Attach the JMenuBar to the ControlFrame.
+    bar.add( fileMenu );  // Add the file menu to the JMenuBar.
+    
+    final JMenu colorMenu = new JMenu( "Color" );
+    colorMenu.setMnemonic( 'C' );
+    
+    
+    // ---START---------test panel-----------------
+    JMenuItem testPanelItem = new JMenuItem( "Test Panel" );
+    testPanelItem.setMnemonic( 'C' );
+    fileMenu.add( testPanelItem );
+    testPanelItem.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+            bar.remove( colorMenu );
+            mainPanel.remove( drawPanel );
+            mainPanel.remove( widthJSlider );
+            xValTextField.setText("");
+            yValTextField.setText("");
+            calcJLabel.setText( "" );
+            mainPanel.add(testPanel, BorderLayout.CENTER );
+            validate();
+            repaint();
+        }
+      }
+    );
+    
+    // input field1
+    xValTextField = new JTextField( 3 );
+    xValTextField.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          xStr = event.getActionCommand();
+        }
+      }
+    );                                                                       
+
+    testPanel.add( xValTextField );
+    
+    // input field2
+    yValTextField = new JTextField( 3 );
+    yValTextField.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          yStr = event.getActionCommand();
+        }
+      }
+    );     
+
+    testPanel.add( yValTextField );
+    
+    // calculate at the push of a button
+    testJButton = new JButton( "Crapulate" );   
+    testJButton.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          try {       
+            int x = Integer.parseInt( xStr );
+            int y = Integer.parseInt( yStr );
+            int result = x + y;
+            testJLabel.setText(xStr + " + " + yStr + " = " + result);
+          }
+          catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog( TestCrapsNewFrame.this, "You must enter a valid number and then <ENTER> for each textbox!", "Invalid Input", JOptionPane.ERROR_MESSAGE );
+            e.printStackTrace();
+          }
+        }
+      }
+    );
+    
+    
+    testPanel.add( testJButton );
+    
+    testJLabel = new JLabel();
+    testPanel.add( testJLabel, BorderLayout.CENTER );
+    // ---END---------test panel-----------------
+    
+    
+    
+ //////////////////backup of Test Panel code/////////////////////////////////////////////////////////////////////////////////////////////////// 
+ /*
+    
+    
+    // ---START---------test panel-----------------
+    JMenuItem testPanelItem = new JMenuItem( "Test Panel" );
+    testPanelItem.setMnemonic( 'C' );
+    fileMenu.add( testPanelItem );
+    testPanelItem.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+            bar.remove( colorMenu );
+            mainPanel.remove( drawPanel );
+            mainPanel.remove( widthJSlider );
+            xValTextField.setText("");
+            yValTextField.setText("");
+            calcJLabel.setText( "" );
+            mainPanel.add(testPanel, BorderLayout.CENTER );
+            validate();
+            repaint();
+        }
+      }
+    );
+    
+    // input field1
+    xValTextField = new JTextField( 3 );
+    xValTextField.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          xStr = event.getActionCommand();
+        }
+      }
+    );                                                                       
+
+    testPanel.add( xValTextField );
+    
+    // input field2
+    yValTextField = new JTextField( 3 );
+    yValTextField.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          yStr = event.getActionCommand();
+        }
+      }
+    );     
+
+    testPanel.add( yValTextField );
+    
+    // calculate at the push of a button
+    testJButton = new JButton( "Crapulate" );   
+    testJButton.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          try {       
+            int x = Integer.parseInt( xStr );
+            int y = Integer.parseInt( yStr );
+            int result = x + y;
+            testJLabel.setText(xStr + " + " + yStr + " = " + result);
+          }
+          catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog( TestCrapsNewFrame.this, "You must enter a valid number and then <ENTER> for each textbox!", "Invalid Input", JOptionPane.ERROR_MESSAGE );
+            e.printStackTrace();
+          }
+        }
+      }
+    );
+    
+    
+    testPanel.add( testJButton );
+    
+    testJLabel = new JLabel();
+    testPanel.add( testJLabel, BorderLayout.CENTER );
+    // ---END---------test panel-----------------
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+*/
+ //////////////////unused code below here///////////////////////////////////////////////////////////////////////////////////////////////////   
+    
+    /*
+    // copy of clean test panel
+    JMenuItem testPanelItem = new JMenuItem( "Test Panel" );
+    testPanelItem.setMnemonic( 'C' );
+    fileMenu.add( testPanelItem );
+    testPanelItem.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          bar.remove( colorMenu );
+          mainPanel.remove( drawPanel );
+          mainPanel.remove( widthJSlider );
+          xValTextField.setText("");
+          yValTextField.setText("");
+          calcJLabel.setText( "" );
+          mainPanel.add( calcPanel, BorderLayout.CENTER );
+          validate();
+          repaint();
+        }
+      }
+    );
+    */
+    
+    
+    
     JMenuItem aboutItem = new JMenuItem( "About..." );
     aboutItem.setMnemonic( 'A' );
     fileMenu.add( aboutItem );
@@ -66,13 +299,9 @@ public class TestCrapsNewFrame extends JFrame
         }
      }  // End of anonymous inner class
     );
-      
-    final JMenuBar bar = new JMenuBar();  // Create a JMenuBar so we can attach menus to it.
-    setJMenuBar( bar );  // Attach the JMenuBar to the ControlFrame.
-    bar.add( fileMenu );  // Add the file menu to the JMenuBar.
+    
   
-    final JMenu colorMenu = new JMenu( "Color" );
-    colorMenu.setMnemonic( 'C' );
+
     
     JMenuItem redItem = new JMenuItem( "Red" );
     colorMenu.add( redItem );
@@ -125,7 +354,11 @@ public class TestCrapsNewFrame extends JFrame
         }
      }  // End of anonymous inner class
     );
-     
+    
+
+    
+    
+    
     JMenuItem calcPanelItem = new JMenuItem( "Calculate" );
     calcPanelItem.setMnemonic( 'C' );
     fileMenu.add( calcPanelItem );
@@ -243,6 +476,9 @@ public class TestCrapsNewFrame extends JFrame
     
     calcJLabel = new JLabel();
     calcPanel.add( calcJLabel, BorderLayout.CENTER );
+    
+
+    
     
     setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
