@@ -37,10 +37,11 @@ public class TestCrapsNewFrame extends JFrame
   private String xStr;
   private String yStr;
   
-  //
+  // test
   private final JPanel testPanel;
   private JLabel testJLabel;
   private JButton testJButton;
+  private JButton quitButton;
 
   
 
@@ -50,6 +51,8 @@ public class TestCrapsNewFrame extends JFrame
     super( title );
     mainPanel = new JPanel( new BorderLayout() );
     mainPanel.setSize(200, 250);  
+    // set in center of screen
+    //setLocationRelativeTo(null);
     
     // Test Panel
     testPanel = new JPanel( new FlowLayout() );    // original
@@ -104,6 +107,9 @@ public class TestCrapsNewFrame extends JFrame
         }
       }
     );
+    
+
+    
     
     // input field1
     xValTextField = new JTextField( 3 );
@@ -268,6 +274,30 @@ public class TestCrapsNewFrame extends JFrame
     
 */
  //////////////////unused code below here///////////////////////////////////////////////////////////////////////////////////////////////////   
+    ///////JUNK//////////////
+    /*
+    
+        JButton quitButton = new JButton("Quit");
+    quitButton.setBounds(0, 0, 20, 20);
+    quitButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent event) {
+            System.exit(0);
+       }
+    });
+    mainPanel.add(quitButton);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    */
     
     /*
     // copy of clean test panel
