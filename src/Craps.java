@@ -73,24 +73,30 @@ public class Craps
 	      switch (sumOfDice) 
 	      {
 	         case SEVEN: // win with 7 on first roll
+//	        	 return Status.WON;
 	         case YO_LEVEN: // win with 11 on first roll           
 	            gameStatus = Status.WON;
+//	            return Status.WON;
 	            break;
 	         case SNAKE_EYES: // lose with 2 on first roll
+//	        	 return Status.LOST;
 	         case TREY: // lose with 3 on first roll
+//	        	 return Status.LOST;
 	         case BOX_CARS: // lose with 12 on first roll
 	            gameStatus = Status.LOST;
+//	            return Status.LOST;
 	            break;
 	         default: // did not win or lose, so remember point         
 	            gameStatus = Status.CONTINUE; // game is not over
 	            myPoint = sumOfDice; // remember the point
 	            System.out.printf("Point is %d%n", myPoint);
-	            break;
+//	            return Status.CONTINUE;
+	            //break;
 	      } 
-	      System.out.println("\tscoringGameStatus " + gameStatus + " myPoint " + myPoint);
+	      //System.out.println("\tscoringGameStatus " + gameStatus + " myPoint " + myPoint);
    }
    
-   public void gameScore(int[] diceRoll)
+   public void gameScore(int[] diceRoll )	//Status gameStatus
    {
 	   int[] dice = diceRoll;
 //	   System.out.println("enter method gameScore");
@@ -115,10 +121,12 @@ public class Craps
           {
         	  gameStatus = Status.WON;
         	  System.out.print(" Win" + "\n");
+        	  
           }
           else if (sumOfDice == SEVEN) // lose by rolling 7 before point
           {
         	  gameStatus = Status.LOST;
+        	  
           }
                 
        } 
@@ -127,10 +135,12 @@ public class Craps
        if (gameStatus == Status.WON)
        {
     	   System.out.println(" Player wins");
+    	  // return Status.WON;
        }
        else
        {
     	   System.out.println(" Player loses");
+    	  // return Status.LOST;
        }
           
    
@@ -148,8 +158,9 @@ public class Craps
 //	   gameScore();
 	   
 	   int[] results = rollDice();
+	   //Status returned = gameStatus;
 	   scoring(results);
-	   gameScore(results);
+	   gameScore(results );		//returned
 	   
 	   
 
