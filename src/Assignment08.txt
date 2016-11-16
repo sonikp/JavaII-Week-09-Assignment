@@ -23,10 +23,16 @@ Please use the zip format (not .rar or any other format).
 
 /*
 		
+		Layouts & Assignments:
+		http://www.cs101.org/courses/fall05/index
+		
+		
 		icons:
 		http://www.small-icons.com/packs/24x24-free-application-icons.htm
 		
 		Tutorials:
+		http://www.guru99.com/java-swing-gui.html
+		
 		https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=beginning%20java%20swing%20tutorial
 		https://docs.oracle.com/javase/tutorial/uiswing/examples/components/
 		

@@ -35,7 +35,7 @@ public class TestCrapsNewFrame extends JFrame
 	
 	/////////////////Original////////////////////////////////////////////////////////////////////
 	  private JPanel mainPanel;
-	  private final JPanel calcPanel;
+//	  private final JPanel calcPanel;
 	  private JSlider widthJSlider;
 	  private JTextField xValTextField;
 	  private JTextField yValTextField;
@@ -87,11 +87,11 @@ public class TestCrapsNewFrame extends JFrame
 	    private JLabel sumOfDiceLabel = new JLabel("Total:");
 	    private JLabel pointLabel = new JLabel("Point:");
 	    private JLabel resultsLabel = new JLabel("Results:");
-	    private JTextField dice1Field = new JTextField("???");
-	    private JTextField dice2Field = new JTextField("???");
-	    private JTextField sumOfDiceField = new JTextField("???");
+	    private JTextField dice1Field = new JTextField( 6 );
+	    private JTextField dice2Field = new JTextField( 6 );
+	    private JTextField sumOfDiceField = new JTextField( 6 );
 	    private JTextField pointField = new JTextField("???");
-	    private JTextField resultsField = new JTextField("????");
+	    private JTextField resultsField = new JTextField( 6 );
 	    private JButton rollButton = new JButton("ROLL");
 	  
 		
@@ -108,16 +108,16 @@ public class TestCrapsNewFrame extends JFrame
     
     // Craps Panel
     crapsPanel = new JPanel( new FlowLayout() );    // original
-    crapsPanel.setSize(40, 40);
+    crapsPanel.setSize(200, 200);
     //testPanel = new JPanel( new GridLayout(2, 2, 12, 6) );	// didn't work
     
     //gameScore();
     
-    calcPanel = new JPanel( new FlowLayout() );    
-    calcPanel.setSize(200, 200);    
+//    calcPanel = new JPanel( new FlowLayout() );    
+//    calcPanel.setSize(200, 200);    
 
-    final DrawControlPanel drawPanel = new DrawControlPanel();
-    drawPanel.setSize(200, 200);    
+//    final DrawControlPanel drawPanel = new DrawControlPanel();
+//    drawPanel.setSize(200, 200);    
     
     int[] foo = rollDice();
     System.out.println("foo " + foo[0]);
@@ -159,7 +159,9 @@ public class TestCrapsNewFrame extends JFrame
       {
         public void actionPerformed( ActionEvent event )
         {
-            mainPanel.remove( drawPanel );
+//            mainPanel.remove( drawPanel );
+            int[] foo = rollDice();
+            System.out.println("foo " + foo[0]);
             mainPanel.add(crapsPanel, BorderLayout.CENTER );
             validate();
             repaint();
@@ -176,7 +178,7 @@ public class TestCrapsNewFrame extends JFrame
       {
         public void actionPerformed( ActionEvent event )
         {
-            mainPanel.remove( drawPanel );
+//            mainPanel.remove( drawPanel );
             mainPanel.add(crapsPanel, BorderLayout.CENTER );
             validate();
             repaint();
@@ -187,32 +189,53 @@ public class TestCrapsNewFrame extends JFrame
     
     crapsJLabel = new JLabel();
     crapsPanel.add( crapsJLabel, BorderLayout.CENTER );
-    crapsPanel.add(sumLabel);
-    crapsPanel.add(sumField);
+//    crapsPanel.add(sumLabel);
+//    crapsPanel.add(sumField);
     
 
     // calculate at the push of a button
-    rollJButton = new JButton( "Roll" );   
+    rollJButton = new JButton( "Rolls" );   
     rollJButton.addActionListener(
       new ActionListener()
       {
         public void actionPerformed( ActionEvent event )
         {
-        	int sum[] = gameCraps.rollDice();
-        	sumLabel.setText("Sum is: " + sum[2]);
-        	dice1Label.setText("Dice 1: " + sum[0]);
-        	dice2Label.setText("Dice 2: " + sum[1]);
+        	int sum[] = rollDice();
+        	sumLabel.setText("Sum is: ");
+        	sumField.setText("" + sum[2]);
+        	
+        	dice1Label.setText("Dice 1: " );
+        	dice1Field.setText("" + sum[0]);
+        	
+        	dice2Label.setText("Dice 2: ");
+        	dice2Field.setText("" + sum[1]);
+        	
+        	resultsLabel.setText("Results : ");
+        	resultsField.setText(" ");
         	
         	crapsPanel.add(dice1Label);
+        	crapsPanel.add(dice1Field);
         	crapsPanel.add(dice2Label);
+        	crapsPanel.add(dice2Field);
         	crapsPanel.add(sumLabel);
-        	gameCraps.scoring(sum);   	
+        	crapsPanel.add(sumField);
+        	crapsPanel.add(resultsLabel);
+        	crapsPanel.add(resultsField);
+        	scoring(sum);   
+        	gameScore(sum);
+
+        
+        	
+        	
+        	
         }
       }
     );
     
   
     crapsPanel.add( rollJButton );
+
+
     crapsJLabel = new JLabel();
     crapsPanel.add( crapsJLabel, BorderLayout.CENTER );
    
@@ -259,22 +282,24 @@ public class TestCrapsNewFrame extends JFrame
 // roll dice, calculate sum and display results
 public static int[] rollDice()
 {
-int[] returnRoll = new int[3];
-returnRoll[0] = (1 + randomNumbers.nextInt(6));
-returnRoll[1] = (1 + randomNumbers.nextInt(6));
-returnRoll[2] = returnRoll[0] + returnRoll[1];
-return returnRoll;
+	int[] returnRoll = new int[3];
+	returnRoll[0] = (1 + randomNumbers.nextInt(6));
+	returnRoll[1] = (1 + randomNumbers.nextInt(6));
+	returnRoll[2] = returnRoll[0] + returnRoll[1];
+	return returnRoll;
 
 }
 
 public void scoring(int[] diceRoll)
 {
 
-int[] dice = diceRoll;
-sumOfDice = dice[2];
-
-	
-System.out.println("total: " + sumOfDice);
+	int[] dice = diceRoll;
+	sumOfDice = dice[2];
+	System.out.println("dice1: " + dice[0]);
+	System.out.println("dice2: " + dice[1]);
+	System.out.println("total: " + dice[2]);
+		
+	System.out.println("totalfoo: " + sumOfDice);
 
 // determine game status and point based on first roll 
  switch (sumOfDice) 
@@ -299,66 +324,55 @@ System.out.println("total: " + sumOfDice);
 
 public void gameScore(int[] diceRoll )	
 {
-int[] dice = diceRoll;
+	int[] dice = diceRoll;
+	
+	sumOfDice = dice[2];
 
-sumOfDice = dice[2];
 
-
-// while game is not complete
-while (gameStatus == Status.CONTINUE) // not WON or LOST
-{ 
-  System.out.println("\tgamescoreGameStatus " + gameStatus + " dice[2] " + sumOfDice);
-  
-  int[] anotherRoll = rollDice(); // roll dice again
-  System.out.print("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1]);
- sumOfDice = anotherRoll[2];
-
-// determine game status
- if (sumOfDice == myPoint) // win by making point
- {
-	  gameStatus = Status.WON;
-	  System.out.print(" Win" + "\n");
-	  
- }
- else if (sumOfDice == SEVEN) // lose by rolling 7 before point
- {
-	  gameStatus = Status.LOST;
- }     
-} 
+	// while game is not complete
+	while (gameStatus == Status.CONTINUE) // not WON or LOST
+	{ 
+		  System.out.println("\tgamescoreGameStatus " + gameStatus + " dice[2] " + sumOfDice);
+		  
+		  int[] anotherRoll = rollDice(); // roll dice again
+		  System.out.print("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1]);
+		  sumOfDice = anotherRoll[2];
+		
+		// determine game status
+		 if (sumOfDice == myPoint) // win by making point
+		 {
+			  gameStatus = Status.WON;
+			  System.out.print(" Win" + "\n");
+			  
+		 }
+		 else if (sumOfDice == SEVEN) // lose by rolling 7 before point
+		 {
+			  gameStatus = Status.LOST;
+		 }     
+	} 
 
 // display won or lost message
 if (gameStatus == Status.WON)
 {
   System.out.println(" Player wins");
-  resultsField.setText(" Player wins");
+  crapsPanel.add(resultsField);
+  resultsField.setText(" pooPlayer wins");
+  crapsPanel.add(resultsLabel);
+  resultsLabel.setText("PLAYER " + gameStatus);		// <= field
 }
 else
 {
   System.out.println(" Player loses");
-  resultsField.setText(" Player wins");
+  crapsPanel.add(resultsField);
+  resultsField.setText(" PooPlayer loses");
+  crapsPanel.add(resultsLabel);
+  resultsLabel.setText("PLAYER " + gameStatus);		// <= field
 }
  
 
 }
 
-private class RollListener implements ActionListener
-{
-public void actionPerformed(ActionEvent e)
-{
 
-int[] sum = rollDice();
-  
-
-dice1Field.setText(Integer.toString(sum[0]));
-dice2Field.setText(Integer.toString(sum[1]));
-sumOfDiceField.setText(Integer.toString(sum[2]));
-pointField.setText(Integer.toString(sum[2]));
-
-scoring(sum);
-gameScore(sum);	
-
-}
-}
 
 
 /////////////////NEW////////////////////////////////////////////////////////////////////   
