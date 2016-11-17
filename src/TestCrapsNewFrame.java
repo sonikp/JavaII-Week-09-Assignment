@@ -72,6 +72,7 @@ public class TestCrapsNewFrame extends JFrame
 		private int sumOfDice = 0;
 		private Status gameStatus = null;
 		private int myPoint = 0;
+		private int[] sum = new int[3];
 	   
 		// constants that represent common rolls of the dice
 		private static final int SNAKE_EYES = 2;
@@ -117,6 +118,33 @@ public class TestCrapsNewFrame extends JFrame
 //    calcPanel.setSize(200, 200);    
 
 //    final DrawControlPanel drawPanel = new DrawControlPanel();
+    /*
+	sumLabel.setText("Sum is: ");
+	sumField.setText("" + sum[2]);
+
+	
+	dice1Label.setText("Dice 1: " );
+	dice1Label.setBounds(100, 100, 80, 25);
+	dice1Field.setText("" + sum[0]);
+	dice1Field.setBounds(100, 100, 80, 25);
+	
+	dice2Label.setText("Dice 2: ");
+	dice2Field.setText("" + sum[1]);
+	
+	resultsLabel.setText("Results : ");
+	resultsField.setText(" ");
+	
+	crapsPanel.add(dice1Label);
+	crapsPanel.add(dice1Field);
+	crapsPanel.add(dice2Label);
+	crapsPanel.add(dice2Field);
+	crapsPanel.add(sumLabel);
+	crapsPanel.add(sumField);
+	crapsPanel.add(resultsLabel);
+	crapsPanel.add(resultsField);
+    */
+    
+    
 //    drawPanel.setSize(200, 200);    
     
     int[] foo = rollDice();
@@ -194,18 +222,22 @@ public class TestCrapsNewFrame extends JFrame
     
 
     // calculate at the push of a button
-    rollJButton = new JButton( "Rolls" );   
+    rollJButton = new JButton( "Rolls" );  
+    rollJButton.setBounds(100, 100, 80, 25);	//<= appears not to be used
     rollJButton.addActionListener(
       new ActionListener()
       {
         public void actionPerformed( ActionEvent event )
         {
-        	int sum[] = rollDice();
+        	//int sum[] = rollDice();
+        	sum = rollDice();
         	sumLabel.setText("Sum is: ");
         	sumField.setText("" + sum[2]);
         	
         	dice1Label.setText("Dice 1: " );
+        	dice1Label.setBounds(100, 100, 80, 25);
         	dice1Field.setText("" + sum[0]);
+        	dice1Field.setBounds(100, 100, 80, 25);
         	
         	dice2Label.setText("Dice 2: ");
         	dice2Field.setText("" + sum[1]);

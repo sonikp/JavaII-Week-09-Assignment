@@ -673,9 +673,9 @@ public TestCrapsControlFrame(String title)
    {
      public void actionPerformed( ActionEvent event )
      {
-       int result = crapsGame.rollDice();
-       System.out.println(crapsGame.rollDice());
-       crapsJLabel.setText("result " + result);
+       //int result = //crapsGame.rollDice();
+       //System.out.println(crapsGame.rollDice());
+       //crapsJLabel.setText("result " + result);
 //       crapsJLabel.setText(crapsGame.rollDice());
        
      }
