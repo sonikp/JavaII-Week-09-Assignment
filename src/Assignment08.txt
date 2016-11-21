@@ -17,6 +17,18 @@ Please use the zip format (not .rar or any other format).
 4x JTextField = display the values of each die and the sum of the dice after each roll
 
 
+------------------------------------
+
+Investigating the JLabel last element in while loop issue:
+
+https://www.google.com/search?q=Java+swing+jLabel+setText+in+a+loop
+
+http://stackoverflow.com/questions/23538005/jlabel-settext-is-only-setting-text-for-last-element-in-a-loop
+http://stackoverflow.com/questions/16455226/having-difficulty-displaying-jpanels-that-were-added-using-for-loop-and-a-meth
+http://stackoverflow.com/questions/16010990/changing-jtextfields-text-while-iterating-or-inside-a-loop
+https://www.daniweb.com/programming/software-development/threads/349785/how-to-create-jlabels-with-for-loop
+https://coderanch.com/t/433458/java/Display-real-time
+https://coderanch.com/t/434750/java/refresh-label
 
 -----------------------------------------
 

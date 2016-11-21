@@ -16,7 +16,7 @@ public class TestCrapsApp
    public static void main( String args[] )
    {
       //JFrame frame = new TestCrapsControlFrame( "Assignment 8 Craps..." );
-      //JFrame frame = new TestCrapsNewFrame( "Assignment 8 Craps..." );
+//      JFrame frame = new TestCrapsNewFrame( "Assignment 8 Craps..." );
       JFrame frame = new TestCrapsLayoutFrame( "Craps + Layout..." );
       
    }

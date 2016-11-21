@@ -40,7 +40,7 @@ public class DeitelCraps
          default: // did not win or lose, so remember point         
             gameStatus = Status.CONTINUE; // game is not over
             myPoint = sumOfDice; // remember the point
-            System.out.printf("Point is %d%n", myPoint);
+            System.out.printf("myPoint is %d%n", myPoint);
             break;
       } 
 

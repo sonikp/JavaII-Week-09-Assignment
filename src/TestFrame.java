@@ -1,23 +1,23 @@
-// Tutorial 15: CrapsGame.java
+// CrapsLayoutFrame.java
 // This application plays a simple craps game.
+// Based on application of Section 6.10 of the Deitel & Deitel textbook
+// Michael Floerchinger
 
 import java.awt.*;
 import java.awt.event.*;
 import java.security.SecureRandom;
-import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.*;
 
 
 
 
-public class TestCrapsLayoutFrame extends JFrame 
+public class TestFrame extends JFrame 
 {
 	/**
 	 * Display panel items
 	 */
 
-	
 	// JPanel and TitledBorder to contain dice
     private JPanel pointDiceJPanel;
     private TitledBorder pointDiceTitledBorder;
@@ -80,7 +80,7 @@ public class TestCrapsLayoutFrame extends JFrame
      */
     
     ///////// constructor ///////////////
-    public TestCrapsLayoutFrame(String title)
+    public TestFrame(String title)
     {
  	   super( title );
  	   createUserInterface();
@@ -183,13 +183,15 @@ public class TestCrapsLayoutFrame extends JFrame
                public void actionPerformed ( ActionEvent event )
                {
                   //playJButtonActionPerformed( event );
-              	 diceArray = rollDice();
-              	 
-              	 //display dice and sum results
-              	 dice1Field.setText( "    " + diceArray[0] );
-              	 dice2Field.setText( "    " + diceArray[1] );
-              	 diceTotalField.setText( "    " + diceArray[2] );
-              	 scoring(diceArray);
+            	   diceArray = rollDice();
+//              	 
+//              	 //display dice and sum results
+//              	 dice1Field.setText( "    " + diceArray[0] );
+//              	 dice2Field.setText( "    " + diceArray[1] );
+//              	 diceTotalField.setText( "    " + diceArray[2] );
+            	   gameScore(diceArray);
+            	   System.out.println("foo");
+//              	 scoring(diceArray);
               	
                }
 
@@ -197,31 +199,28 @@ public class TestCrapsLayoutFrame extends JFrame
 
         ); // end call to addActionListener      
         
-        // set up rollJButton
-        rollJButton = new JButton();
-        rollJButton.setBounds( 16, 62, 88, 23 );	 
-        rollJButton.setText( "Roll" );
-        rollJButton.setEnabled( false );
-        contentPane.add( rollJButton );
-        rollJButton.addActionListener(
-              
-           new ActionListener() // anonymous inner class
-           {
-              // event handler called when rollJButton is clicked
-              public void actionPerformed ( ActionEvent event )
-              {
-              	
-              	gameScore(diceArray);
-              	//continueRollAgain = false;
-              	
-              }
-           
-           } // end anonymous inner class
-
-        ); // end call to addActionListener
+//        // set up rollJButton
+//        rollJButton = new JButton();
+//        rollJButton.setBounds( 16, 62, 88, 23 );	 
+//        rollJButton.setText( "Roll" );
+//        rollJButton.setEnabled( false );
+//        contentPane.add( rollJButton );
+//        rollJButton.addActionListener(
+//              
+//           new ActionListener() // anonymous inner class
+//           {
+//              // event handler called when rollJButton is clicked
+//              public void actionPerformed ( ActionEvent event )
+//              {
+//              	gameScore(diceArray);
+//              }
+//           
+//           } // end anonymous inner class
+//
+//        ); // end call to addActionListener
                 
         // set properties of application's window
-        setTitle( "!Craps Game" ); // set title bar string
+        setTitle( "TestFrame" ); // set title bar string
         setSize( 350, 250 );      // set window size
         setVisible( true );       // display window
 
@@ -229,53 +228,22 @@ public class TestCrapsLayoutFrame extends JFrame
        
     public void displayDicePointPanel()
     {
-    	//continueRollAgain = false;
+    	// Debug code
     	System.out.println("displayDicePointPanel-Meth: " + pointPanelLocation);
-    	
     	System.out.println("displayDicePointPanel-Meth: " +  anotherRoll[0] + " " + anotherRoll[1] + " " + anotherRoll[2]);
     	
 		pointDice1JLabel.setText(" " + anotherRoll[0]);
-		 // pointDice1JLabel.setBounds( 24, pointPanelLocation, 64, 56 );
 		pointDice2JLabel.setText(" " + anotherRoll[1]);
-		 // pointDice2JLabel.setBounds( 64, pointPanelLocation, 64, 56 );
-		sumOfDice = anotherRoll[2];
-		pointSumJLabel.setText("Total: " + sumOfDice);
-		  //pointSumJLabel.setBounds( 110, pointPanelLocation, 64, 56 );	
+		pointSumJLabel.setText("Total: " + anotherRoll[2]);
 
-	 //---
-	   
-	      // set up pointDiceJPanel
-//	      pointDiceJPanel = new JPanel();
-//	      pointDiceJPanel.setBounds( 122, 86, 200, 122 );	// 116, 16, 200, 122 
-//	      pointDiceJPanel.setLayout( null );
-//	      pointDiceJPanel.setBorder( pointDiceTitledBorder );
-//	      contentPane.add( pointDiceJPanel );
-	      
-	      // set up pointDice1JLabel
-//	      pointDice1JLabel = new JLabel();
-	     pointDice1JLabel.setBounds( 24, pointPanelLocation, 64, 56 );
-//	      pointDiceJPanel.add( pointDice1JLabel );
-//	      System.out.println("pointpanel: " + pointPanelLocation);
-	      
-	      // set up pointDice2JLabel
-//	      pointDice2JLabel = new JLabel();
-	     pointDice2JLabel.setBounds( 64, pointPanelLocation, 64, 56 );
-//	      pointDiceJPanel.add( pointDice2JLabel );
-	      
-	      // set up pointDice2JLabel
-//	      pointSumJLabel = new JLabel();
-	     pointSumJLabel.setBounds( 110, pointPanelLocation, 64, 56 );		
-//	      pointDiceJPanel.add( pointSumJLabel );
-//         validate();
-//         repaint();
+	    pointDice1JLabel.setBounds( 24, pointPanelLocation, 64, 56 );
+	    pointDice2JLabel.setBounds( 64, pointPanelLocation, 64, 56 );
+	    pointSumJLabel.setBounds( 110, pointPanelLocation, 64, 56 );		
 
-	      //--
-	   
+        validate();
+        repaint();
+
     }
-   
-  
-      
-
    
 	// roll dice, calculate sum and display results
 	public static int[] rollDice()
@@ -336,33 +304,55 @@ public class TestCrapsLayoutFrame extends JFrame
 	{
 		int[] dice = diceRoll;
 		sumOfDice = dice[2];
+		System.out.println("gameScore");
+		gameStatus = Status.CONTINUE;
 
 		// while game is not complete
 		while (gameStatus == Status.CONTINUE) // not WON or LOST
 		{
 			anotherRoll = rollDice(); // roll dice again
-			displayDicePointPanel();
+//			displayDicePointPanel();
+			
+			pointDice1JLabel.setText(" test1 ");
+			pointDice2JLabel.setText(" test1 ");
+			pointSumJLabel.setText(" test1 ");
+			
+//			pointDice1JLabel.setText(" " + anotherRoll[0]);		// + anotherRoll[0]
+//			pointDice2JLabel.setText(" " + anotherRoll[1]);
+//			pointSumJLabel.setText("Total: " + anotherRoll[2]);
+//
+		    pointDice1JLabel.setBounds( 24, pointPanelLocation, 64, 56 );
+		    pointDice2JLabel.setBounds( 64, pointPanelLocation, 64, 56 );
+		    pointSumJLabel.setBounds( 110, pointPanelLocation, 64, 56 );	
+			
 			pointPanelLocation = pointPanelLocation + 10;
-			System.out.print("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1] + "\t");
+			
+			// Debug code
+			System.out.println("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1] + " & " + pointPanelLocation );
+			
+			if ( pointPanelLocation == 40)
+			{
+				gameStatus = Status.WON;
+			}
 			
 			// determine game status
 			 if (sumOfDice == myPoint) // win by making point
 			 {
-				  gameStatus = Status.WON;
-				  System.out.print(" Win" + "\n");
-				  resultJTextField.setText(" " + gameStatus); 
+				 gameStatus = Status.WON;
+				 System.out.print(" Win" + "\n");
+				 resultJTextField.setText("  " + gameStatus);
+				 rollJButton.setEnabled( false );
 			 }
 			 else if (sumOfDice == SEVEN) // lose by rolling 7 before point
 			 {
-				  gameStatus = Status.LOST;
-				  System.out.print(" Lost" + "\n");
-				  resultJTextField.setText(" " + gameStatus);
-			 }     
+				 gameStatus = Status.LOST;
+				 System.out.print(" Lost" + "\n");
+				 resultJTextField.setText("  " + gameStatus);
+				 rollJButton.setEnabled( false );
+			 }  
+			 
 		} 
-
 
 	}
 
-
-
-} // end class CrapsGame
+} // end class TestFrame
