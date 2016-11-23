@@ -3,13 +3,21 @@
 // Based on application of Section 6.10 of the Deitel & Deitel textbook
 // Michael Floerchinger
 
-import java.awt.*;
-import java.awt.event.*;
+
+
+
+
+
+import javax.swing.JFrame;
+import javax.swing.border.TitledBorder;
+import java.awt.Container;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.security.SecureRandom;
-import javax.swing.*;
-import javax.swing.border.*;
-
-
 
 
 public class TestFrame extends JFrame 
@@ -183,15 +191,13 @@ public class TestFrame extends JFrame
                public void actionPerformed ( ActionEvent event )
                {
                   //playJButtonActionPerformed( event );
-            	   diceArray = rollDice();
-//              	 
-//              	 //display dice and sum results
-//              	 dice1Field.setText( "    " + diceArray[0] );
-//              	 dice2Field.setText( "    " + diceArray[1] );
-//              	 diceTotalField.setText( "    " + diceArray[2] );
-            	   gameScore(diceArray);
-            	   System.out.println("foo");
-//              	 scoring(diceArray);
+              	 diceArray = rollDice();
+              	 
+              	 //display dice and sum results
+              	 dice1Field.setText( "    " + diceArray[0] );
+              	 dice2Field.setText( "    " + diceArray[1] );
+              	 diceTotalField.setText( "    " + diceArray[2] );
+              	 scoring(diceArray);
               	
                }
 
@@ -199,38 +205,38 @@ public class TestFrame extends JFrame
 
         ); // end call to addActionListener      
         
-//        // set up rollJButton
-//        rollJButton = new JButton();
-//        rollJButton.setBounds( 16, 62, 88, 23 );	 
-//        rollJButton.setText( "Roll" );
-//        rollJButton.setEnabled( false );
-//        contentPane.add( rollJButton );
-//        rollJButton.addActionListener(
-//              
-//           new ActionListener() // anonymous inner class
-//           {
-//              // event handler called when rollJButton is clicked
-//              public void actionPerformed ( ActionEvent event )
-//              {
-//              	gameScore(diceArray);
-//              }
-//           
-//           } // end anonymous inner class
-//
-//        ); // end call to addActionListener
+        // set up rollJButton
+        rollJButton = new JButton();
+        rollJButton.setBounds( 16, 62, 88, 23 );	 
+        rollJButton.setText( "Roll" );
+        rollJButton.setEnabled( false );
+        contentPane.add( rollJButton );
+        rollJButton.addActionListener(
+              
+           new ActionListener() // anonymous inner class
+           {
+              // event handler called when rollJButton is clicked
+              public void actionPerformed ( ActionEvent event )
+              {
+              	gameScore(diceArray);
+              }
+           
+           } // end anonymous inner class
+
+        ); // end call to addActionListener
                 
         // set properties of application's window
-        setTitle( "TestFrame" ); // set title bar string
+        setTitle( "!Craps Game" ); // set title bar string
         setSize( 350, 250 );      // set window size
         setVisible( true );       // display window
 
     }	// end method createUserInterface
-       
+     
+    // Status panel for playing the point games (this is not working correctly, hence the debug code still here)
     public void displayDicePointPanel()
     {
     	// Debug code
-    	System.out.println("displayDicePointPanel-Meth: " + pointPanelLocation);
-    	System.out.println("displayDicePointPanel-Meth: " +  anotherRoll[0] + " " + anotherRoll[1] + " " + anotherRoll[2]);
+    	System.out.println("\n\ndisplayDice-Meth: " +  anotherRoll[0] + " " + anotherRoll[1] + " " + anotherRoll[2] + " - " + pointPanelLocation);
     	
 		pointDice1JLabel.setText(" " + anotherRoll[0]);
 		pointDice2JLabel.setText(" " + anotherRoll[1]);
@@ -277,7 +283,7 @@ public class TestFrame extends JFrame
 		    default: // did not win or lose, so remember point         
 		       gameStatus = Status.CONTINUE; // game is not over
 		       myPoint = sumOfDice; // remember the point
-		       //System.out.printf("Point is %d%n", myPoint);
+		       System.out.printf("myPoint is %d%n", myPoint); 	// debug code
 		       break;
 		 } 
 
@@ -299,49 +305,34 @@ public class TestFrame extends JFrame
 	         playJButton.setEnabled( false );
 		 }
 	}
-   
-	public void gameScore(int[] diceRoll )	
+	
+	
+	public void gameScore(int[] diceRoll )
 	{
-		int[] dice = diceRoll;
-		sumOfDice = dice[2];
-		System.out.println("gameScore");
-		gameStatus = Status.CONTINUE;
+
 
 		// while game is not complete
 		while (gameStatus == Status.CONTINUE) // not WON or LOST
 		{
-			anotherRoll = rollDice(); // roll dice again
-//			displayDicePointPanel();
-			
-			pointDice1JLabel.setText(" test1 ");
-			pointDice2JLabel.setText(" test1 ");
-			pointSumJLabel.setText(" test1 ");
-			
-//			pointDice1JLabel.setText(" " + anotherRoll[0]);		// + anotherRoll[0]
-//			pointDice2JLabel.setText(" " + anotherRoll[1]);
-//			pointSumJLabel.setText("Total: " + anotherRoll[2]);
-//
-		    pointDice1JLabel.setBounds( 24, pointPanelLocation, 64, 56 );
-		    pointDice2JLabel.setBounds( 64, pointPanelLocation, 64, 56 );
-		    pointSumJLabel.setBounds( 110, pointPanelLocation, 64, 56 );	
-			
+			anotherRoll = rollDice();
+			sumOfDice = anotherRoll[2];
+			displayDicePointPanel();
 			pointPanelLocation = pointPanelLocation + 10;
 			
 			// Debug code
-			System.out.println("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1] + " & " + pointPanelLocation );
+//			System.out.println("myPoint " + myPoint);
+//			System.out.println("sumOfDice " + sumOfDice);
 			
-			if ( pointPanelLocation == 40)
-			{
-				gameStatus = Status.WON;
-			}
+			// Debug code
+			System.out.print("Your roll is " + anotherRoll[0] + " & " + anotherRoll[1] + "\t");
 			
 			// determine game status
-			 if (sumOfDice == myPoint) // win by making point
-			 {
-				 gameStatus = Status.WON;
-				 System.out.print(" Win" + "\n");
-				 resultJTextField.setText("  " + gameStatus);
-				 rollJButton.setEnabled( false );
+			if (sumOfDice == myPoint) // win by making point
+			{
+				gameStatus = Status.WON;
+				System.out.print(" Win" + "\n");
+				resultJTextField.setText("  " + gameStatus);
+				rollJButton.setEnabled( false );
 			 }
 			 else if (sumOfDice == SEVEN) // lose by rolling 7 before point
 			 {
@@ -350,9 +341,9 @@ public class TestFrame extends JFrame
 				 resultJTextField.setText("  " + gameStatus);
 				 rollJButton.setEnabled( false );
 			 }  
-			 
-		} 
-
+		}
 	}
+   
+
 
 } // end class TestFrame

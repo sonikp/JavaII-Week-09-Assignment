@@ -20,8 +20,8 @@ public class CrapsApp
 {
    public static void main( String args[] )
    {
-      JFrame frame = new CrapsLayoutFrame( "CrapsApp + CrapsLayoutFrame..." );
-//      JFrame frame = new TestFrame( "CrapsApp + CrapsLayoutFrame..." );
+//      JFrame frame = new CrapsLayoutFrame( "CrapsApp + CrapsLayoutFrame..." );
+      JFrame frame = new TestFrame( "CrapsApp + CrapsLayoutFrame..." );
       
 
    }
